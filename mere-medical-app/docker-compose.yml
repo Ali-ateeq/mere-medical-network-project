@@ -1,0 +1,51 @@
+services:
+  mere-medical:
+    image: cfu288/mere-medical:latest
+    container_name: mere-medical
+    restart: unless-stopped
+    ports:
+      - "4201:80"
+    environment:
+      PUBLIC_URL: "http://localhost:4301"
+      IS_DEMO: "enabled"
+    volumes:
+      - ./demo.json:/app/web/assets/demo.json:ro
+    networks:
+      - backend
+
+  wordpress-login:
+    image: quay.io/oauth2-proxy/oauth2-proxy:v7.15.2
+    container_name: mere-medical-wordpress-login
+    restart: unless-stopped
+    depends_on:
+      - mere-medical
+    ports:
+      - "4200:4180"
+    environment:
+      OAUTH2_PROXY_PROVIDER: "oidc"
+      OAUTH2_PROXY_PROVIDER_DISPLAY_NAME: "WordPress Login"
+      OAUTH2_PROXY_OIDC_ISSUER_URL: "${WORDPRESS_ISSUER_URL}"
+      OAUTH2_PROXY_CLIENT_ID: "${WORDPRESS_CLIENT_ID}"
+      OAUTH2_PROXY_CLIENT_SECRET: "${WORDPRESS_CLIENT_SECRET}"
+      OAUTH2_PROXY_REDIRECT_URL: "https://ali-mere-medical.shares.zrok.io/oauth2/callback"
+      OAUTH2_PROXY_UPSTREAMS: "http://mere-medical:80/"
+      OAUTH2_PROXY_HTTP_ADDRESS: "0.0.0.0:4180"
+      OAUTH2_PROXY_SCOPE: "openid profile email"
+      OAUTH2_PROXY_EMAIL_DOMAINS: "*"
+      OAUTH2_PROXY_COOKIE_SECRET: "${OAUTH2_COOKIE_SECRET}"
+      OAUTH2_PROXY_COOKIE_NAME: "_mere_wordpress_login"
+      OAUTH2_PROXY_COOKIE_SECURE: "false"
+      OAUTH2_PROXY_COOKIE_SAMESITE: "lax"
+      OAUTH2_PROXY_SKIP_PROVIDER_BUTTON: "true"
+      OAUTH2_PROXY_INSECURE_OIDC_ALLOW_UNVERIFIED_EMAIL: "true"
+    networks:
+      backend:
+      clab:
+        ipv4_address: 172.20.20.10
+
+networks:
+  backend:
+    driver: bridge
+
+  clab:
+    external: true

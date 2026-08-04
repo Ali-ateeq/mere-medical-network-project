@@ -1,0 +1,148 @@
+{
+  "name": "meremedical",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "clab",
+      "mgmt": {
+        "network": "clab",
+        "bridge": "br-6ffa7e84f3ff",
+        "ipv4-subnet": "172.20.20.0/24",
+        "ipv4-gw": "172.20.20.1",
+        "ipv6-subnet": "3fff:172:20:20::/64",
+        "ipv6-gw": "3fff:172:20:20::1",
+        "external-access": true
+      }
+    }
+  },
+  "ssh-pub-keys": [],
+  "nodes": {
+    "client1": {
+      "index": "0",
+      "shortname": "client1",
+      "longname": "clab-meremedical-client1",
+      "fqdn": "client1.meremedical.io",
+      "group": "",
+      "labdir": "/home/ali/mere-medical-lab/clab-meremedical/client1",
+      "kind": "linux",
+      "image": "alpine:3.20",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.3",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::3",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-6ffa7e84f3ff",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/ali/mere-medical-lab/clab-meremedical/client1",
+        "clab-node-longname": "clab-meremedical-client1",
+        "clab-node-name": "client1",
+        "clab-node-type": "",
+        "clab-owner": "ali",
+        "clab-topo-file": "/home/ali/mere-medical-lab/lab.clab.yml",
+        "containerlab": "meremedical"
+      },
+      "port-bindings": [
+      ]
+    },
+    "client2": {
+      "index": "1",
+      "shortname": "client2",
+      "longname": "clab-meremedical-client2",
+      "fqdn": "client2.meremedical.io",
+      "group": "",
+      "labdir": "/home/ali/mere-medical-lab/clab-meremedical/client2",
+      "kind": "linux",
+      "image": "alpine:3.20",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.4",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::4",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-6ffa7e84f3ff",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/ali/mere-medical-lab/clab-meremedical/client2",
+        "clab-node-longname": "clab-meremedical-client2",
+        "clab-node-name": "client2",
+        "clab-node-type": "",
+        "clab-owner": "ali",
+        "clab-topo-file": "/home/ali/mere-medical-lab/lab.clab.yml",
+        "containerlab": "meremedical"
+      },
+      "port-bindings": [
+      ]
+    },
+    "medical-server": {
+      "index": "2",
+      "shortname": "medical-server",
+      "longname": "clab-meremedical-medical-server",
+      "fqdn": "medical-server.meremedical.io",
+      "group": "",
+      "labdir": "/home/ali/mere-medical-lab/clab-meremedical/medical-server",
+      "kind": "linux",
+      "image": "alpine:3.20",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.20.20.2",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "3fff:172:20:20::2",
+      "mgmt-ipv6-prefix-length": 64,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-6ffa7e84f3ff",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/ali/mere-medical-lab/clab-meremedical/medical-server",
+        "clab-node-longname": "clab-meremedical-medical-server",
+        "clab-node-name": "medical-server",
+        "clab-node-type": "",
+        "clab-owner": "ali",
+        "clab-topo-file": "/home/ali/mere-medical-lab/lab.clab.yml",
+        "containerlab": "meremedical"
+      },
+      "port-bindings": [
+      ]
+    }
+  },
+  "links": [
+    {
+      "endpoints": {
+        "a": {
+          "node": "client1",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:b5:d9:3d",
+          "peer": "z"
+        },
+        "z": {
+          "node": "medical-server",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:a2:fb:a1",
+          "peer": "a"
+        }
+      }
+    },
+    {
+      "endpoints": {
+        "a": {
+          "node": "client2",
+          "interface": "eth1",
+          "mac": "aa:c1:ab:f6:53:65",
+          "peer": "z"
+        },
+        "z": {
+          "node": "medical-server",
+          "interface": "eth2",
+          "mac": "aa:c1:ab:ac:77:f8",
+          "peer": "a"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# zrok credentials
+.zrok2/
+environment.json
+agent-registry.json
+metadata.json
+
+# Backups
+*.backup
+*.backup-*
+*.before-*
+*~
+
+# Docker and application data
+wordpress_data/
+wordpress_db/
+node_modules/
+dist/
+coverage/
+
+# Logs
+*.log
+logs/
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Medical/private data
+demo.json.backup*

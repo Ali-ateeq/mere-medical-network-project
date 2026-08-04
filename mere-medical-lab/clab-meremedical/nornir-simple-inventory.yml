@@ -1,0 +1,16 @@
+---
+client1:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.3
+client2:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.4
+medical-server:
+    username: 
+    password: 
+    platform: linux
+    hostname: 172.20.20.2
